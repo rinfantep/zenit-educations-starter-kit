@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/demo-reset?secret=ff5515050d9678081ef1468865fa7c879940d70c15ca3b4fd0949a710d8e0220",
-      "schedule": "0 */6 * * *"
+      "schedule": "0 4 * * *"
     }
   ]
 }
