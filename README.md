@@ -1,188 +1,185 @@
 # Zenith Education — School Management System
 
-Sistema integral de gestión escolar construido con Next.js 16, TypeScript, Prisma y PostgreSQL. Listo para producción, con integraciones opcionales de pagos, almacenamiento y email.
+A complete school management system built with Next.js 16, TypeScript, Prisma, and PostgreSQL. Production-ready, with optional integrations for payments, file storage, and email.
 
-**[Ver demo en vivo →](TU_URL_DE_VERCEL_AQUI)**
+**[View live demo →](YOUR_VERCEL_URL_HERE)**
 
-## Capturas
+## Screenshots
 
-<!-- Agregá acá 4-6 screenshots: dashboard, perfil de estudiante, boletín PDF, finanzas, modo oscuro -->
+<!-- Add 4-6 screenshots here: dashboard, student profile, PDF report card, finance page, dark mode -->
 
-## Módulos incluidos
+## Modules included
 
-- **Administración** — autenticación con 5 roles (Super Admin, Director, Profesor, Estudiante, Padre/Madre), cambio y recuperación de contraseña
-- **Estudiantes** — perfil completo, documentos, fotos, historial académico, vinculación de padres/tutores
-- **Profesores** — gestión docente, materias, clases a cargo
-- **Clases** — grados, materias, aulas, horarios semanales con detección de choques de profesor
-- **Asistencia** — control diario por clase, estadísticas
-- **Evaluaciones** — notas por materia/período, boletines en PDF
-- **Finanzas** — matrículas, facturas, pagos manuales y Stripe Checkout opcional
-- **Comunicación** — avisos institucionales, notificaciones, mensajería directa
-- **Auditoría** — registro de acciones sensibles (altas, bajas, pagos) con usuario y fecha
+- **Administration** — authentication with 5 roles (Super Admin, Director, Teacher, Student, Parent), password change and recovery
+- **Students** — full profile, documents, photos, academic history, parent/guardian linking
+- **Teachers** — staff management, subjects, assigned classes
+- **Classes** — grades, subjects, classrooms, weekly schedules with teacher time-conflict detection
+- **Attendance** — daily tracking per class, statistics
+- **Evaluations** — grades by subject/period, PDF report cards
+- **Finance** — tuition, invoices, manual payments and optional Stripe Checkout
+- **Communication** — school-wide announcements, notifications, direct messaging
+- **Audit log** — tracks sensitive actions (creations, deletions, payments) with user and timestamp
 
-## Roles y qué ve cada uno
+## Roles and permissions
 
-| Rol | Acceso |
+| Role | Access |
 |---|---|
-| Super Admin | Todo el sistema, incluida Auditoría y Configuración |
-| Director | Todo excepto Auditoría de sistema (configurable) |
-| Profesor | Sus clases, asistencia, evaluaciones, comunicación |
-| Estudiante | Su propia asistencia, notas, comunicación |
-| Padre/Madre | Panel de solo lectura con el progreso de sus hijos vinculados |
+| Super Admin | Full system access, including Audit Log and Settings |
+| Director | Full access except system Audit Log (configurable) |
+| Teacher | Their classes, attendance, evaluations, communication |
+| Student | Their own attendance, grades, communication |
+| Parent | Read-only dashboard showing their linked children's progress |
 
-## Stack técnico
+## Tech stack
 
 - Next.js 16 (App Router, Server Actions)
 - TypeScript
 - Tailwind CSS v4
 - Prisma ORM + PostgreSQL
 - Auth.js v5 (NextAuth)
-- Zustand (estado del cliente)
-- Recharts (gráficos)
-- jsPDF (boletines)
-- Sonner (notificaciones)
-- Cloudinary (fotos y documentos — opcional)
-- Stripe (pagos online — opcional)
-- Resend (emails — opcional)
+- Zustand (client state)
+- Recharts (charts)
+- jsPDF (report cards)
+- Sonner (toast notifications)
+- Cloudinary (photos and documents — optional)
+- Stripe (online payments — optional)
+- Resend (emails — optional)
 
-Totalmente responsive (mobile, tablet, desktop) con modo claro/oscuro.
+Fully responsive (mobile, tablet, desktop) with light/dark mode.
 
-## Requisitos previos
+## Prerequisites
 
 - Node.js 20+
 - pnpm
-- PostgreSQL 14+ (local o en la nube — recomendamos [Neon](https://neon.tech) o [Supabase](https://supabase.com))
+- PostgreSQL 14+ (local or cloud — we recommend [Neon](https://neon.tech) or [Supabase](https://supabase.com))
 
-## Instalación
+## Installation
 
-1. Instalá dependencias:
+1. Install dependencies:
 
-   \`\`\`bash
+   ```bash
    pnpm install
-   \`\`\`
+   ```
 
-2. Copiá las variables de entorno:
+2. Copy the environment variables file:
 
-   \`\`\`bash
+   ```bash
    cp .env.example .env
-   \`\`\`
+   ```
 
-3. Completá `DATABASE_URL` con tu conexión de PostgreSQL.
+3. Set `DATABASE_URL` in `.env` to your PostgreSQL connection string.
 
-4. Generá el secreto de autenticación:
+4. Generate the auth secret:
 
-   \`\`\`bash
+   ```bash
    pnpm dlx auth secret
-   \`\`\`
+   ```
 
-5. Corré las migraciones y generá el cliente:
+5. Run migrations and generate the Prisma client:
 
-   \`\`\`bash
+   ```bash
    pnpm dlx prisma migrate deploy
    pnpm dlx prisma generate
-   \`\`\`
+   ```
 
-6. Cargá datos de demostración (recomendado):
+6. Seed demo data (recommended):
 
-   \`\`\`bash
+   ```bash
    pnpm dlx prisma db seed
-   \`\`\`
+   ```
 
-   Crea ~10 profesores, ~60 estudiantes, clases, horarios, asistencia, notas y facturas de ejemplo.
+   This creates ~10 teachers, ~60 students, classes, schedules, attendance, grades, and sample invoices.
 
-7. Iniciá el servidor:
+7. Start the dev server:
 
-   \`\`\`bash
+   ```bash
    pnpm dev
-   \`\`\`
+   ```
 
-8. Entrá a `http://localhost:3000`.
+8. Go to `http://localhost:3000`.
 
-## Credenciales de demostración (después del seed)
+## Demo credentials (after seeding)
 
-| Rol | Email | Contraseña |
+| Role | Email | Password |
 |---|---|---|
 | Super Admin | admin@zenith.edu | Zenith2026! |
 | Director | director@zenith.edu | Zenith2026! |
-| Profesor | profesor1@zenith.edu | Zenith2026! |
-| Estudiante | estudiante1@zenith.edu | Zenith2026! |
+| Teacher | profesor1@zenith.edu | Zenith2026! |
+| Student | estudiante1@zenith.edu | Zenith2026! |
 
-**Importante:** cambiá estas contraseñas antes de usar el sistema en producción real (desde "Mi cuenta" → Cambiar contraseña).
+**Important:** change these passwords before using the system in a real production environment (via "My account" → Change password).
 
-## Variables de entorno
+## Environment variables
 
-Ver `.env.example` para la lista completa. Resumen:
+See `.env.example` for the full list. Summary:
 
-| Variable | Requerida | Propósito |
+| Variable | Required | Purpose |
 |---|---|---|
-| `DATABASE_URL` | Sí | Conexión a PostgreSQL |
-| `AUTH_SECRET` | Sí | Firma de sesiones (Auth.js) |
-| `NEXT_PUBLIC_APP_URL` | Sí | URL pública de la app (para links de email y Stripe) |
-| `STRIPE_SECRET_KEY` / `STRIPE_WEBHOOK_SECRET` | No | Pagos online |
-| `RESEND_API_KEY` | No | Emails de recuperación de contraseña |
-| `CLOUDINARY_*` | No | Fotos y documentos |
-| `DEMO_RESET_SECRET` | No | Protege el endpoint de reseteo de datos demo |
+| `DATABASE_URL` | Yes | PostgreSQL connection |
+| `AUTH_SECRET` | Yes | Session signing (Auth.js) |
+| `NEXT_PUBLIC_APP_URL` | Yes | Public app URL (used in emails and Stripe redirects) |
+| `STRIPE_SECRET_KEY` / `STRIPE_WEBHOOK_SECRET` | No | Online payments |
+| `RESEND_API_KEY` | No | Password reset emails |
+| `CLOUDINARY_*` | No | Photos and documents |
+| `DEMO_RESET_SECRET` | No | Protects the demo data reset endpoint |
 
-Cada integración opcional se desactiva sola (con un fallback visual apropiado) si su variable no está configurada — el sistema nunca se rompe por falta de una API key de terceros.
+Every optional integration disables itself gracefully (with an appropriate UI fallback) when its variable isn't set — the system never breaks due to a missing third-party API key.
 
-## Integraciones opcionales
+## Optional integrations
 
-- **Cloudinary**: cuenta gratis en cloudinary.com → copiá las 5 claves → creá un upload preset sin firma (`Settings → Upload → Add upload preset → Signing mode: Unsigned`).
-- **Stripe**: cuenta en stripe.com → copiá tu Secret key → configurá un webhook a `/api/webhooks/stripe` con el evento `checkout.session.completed`.
-- **Resend**: cuenta gratis en resend.com → copiá tu API key. Sin esto, los links de reset de contraseña se imprimen en la consola del servidor.
+- **Cloudinary**: create a free account at cloudinary.com → copy the 5 keys → create an unsigned upload preset (`Settings → Upload → Add upload preset → Signing mode: Unsigned`).
+- **Stripe**: create an account at stripe.com → copy your Secret key → set up a webhook pointing to `/api/webhooks/stripe` for the `checkout.session.completed` event.
+- **Resend**: create a free account at resend.com and copy your API key. Without it, password reset links are printed to the server console instead.
 
-## Despliegue en producción
+## Production deployment
 
-1. Creá una base de datos en Neon/Supabase.
-2. Subí el proyecto a GitHub.
-3. Importá el repo en Vercel.
-4. Configurá las variables de entorno en Vercel (Settings → Environment Variables).
+1. Create a database on Neon/Supabase.
+2. Push the project to GitHub.
+3. Import the repo into Vercel.
+4. Set the environment variables in Vercel (Settings → Environment Variables).
 5. Build Command: `pnpm dlx prisma migrate deploy && pnpm build`.
-6. Deploy, y corré el seed contra la DB de producción si querés datos de ejemplo ahí también.
+6. Deploy, and optionally run the seed against your production database for sample data.
 
-### Demo público auto-resetable (opcional)
+### Self-resetting public demo (optional)
 
-El proyecto incluye un endpoint `/api/demo-reset` que borra y regenera los datos de demostración, protegido por `DEMO_RESET_SECRET`. Configurando `vercel.json` con un cron job, podés tener un demo público que se limpia solo cada tantas horas — ideal para mostrar el sistema sin arriesgar que alguien lo deje en mal estado. Ver `vercel.json` para el schedule configurado.
+The project includes a `/api/demo-reset` endpoint that wipes and regenerates demo data, protected by `DEMO_RESET_SECRET`. Combined with a `vercel.json` cron job, this lets you run a public demo that cleans itself up automatically every few hours — ideal for showcasing the system without risking someone leaving it in a broken state. See `vercel.json` for the configured schedule.
 
-## Estructura del proyecto
+## Project structure
 
-\`\`\`
+```
 app/
-  page.tsx          → landing page pública
+  page.tsx          → public landing page
   (auth)/           → login, forgot-password, reset-password
-  (app)/            → rutas protegidas (dashboard, estudiantes, clases, etc.)
+  (app)/            → protected routes (dashboard, students, classes, etc.)
   api/              → auth, checkout, webhooks, report-card, demo-reset
-components/         → UI organizada por módulo
-lib/                → queries de Prisma, utilidades, clientes de integraciones
-store/              → estado de Zustand (vistas, menú mobile)
+components/         → UI organized by module
+lib/                → Prisma queries, utilities, integration clients
+store/              → Zustand state (view preferences, mobile menu)
 prisma/
-  schema.prisma     → modelo de datos completo
-  seed.ts           → punto de entrada del seed (usa lib/seed-demo-data.ts)
-\`\`\`
+  schema.prisma     → complete data model
+  seed.ts           → seed entry point (uses lib/seed-demo-data.ts)
+```
 
-## Licencia
+## License
 
-## Licencia
+Single-use license, MIT-style.
 
-Licencia de uso único, estilo MIT.
+Purchasing this product grants a non-exclusive license to:
+- Use, modify, and deploy this code in **one (1)** project, for yourself or a client.
+- Freely modify the code to fit your needs.
 
-Al comprar este producto, se otorga una licencia no exclusiva para:
-- Usar, modificar y desplegar este código en **un (1)** proyecto propio o de un cliente final.
-- Modificar el código libremente para adaptarlo a tus necesidades.
+Not included:
+- Reselling or redistributing the source code as-is, as a template, starter kit, or digital product.
+- Use across multiple projects under a single purchase.
 
-No incluye:
-- Reventa o redistribución del código fuente tal cual, como plantilla, starter kit o producto digital.
-- Uso en múltiples proyectos bajo una misma compra.
+For multi-project licenses or extended terms, please reach out before purchasing.
 
-Para licencias de uso múltiple o consultas sobre términos extendidos,
-contactar directamente antes de la compra.
+This software is provided "as is," without explicit warranties regarding
+performance in the buyer's specific environment.
 
-Este software se entrega "tal cual" (as-is), sin garantías explícitas de
-funcionamiento en entornos específicos del comprador.
+## Support
 
-## Soporte
-
-Este es un starter kit comercial. Para dudas de instalación o personalización: [rinfantep92@gmail.com].
+This is a commercial starter kit. For installation or customization questions: [your email/support channel here].
 
 user
 admin@zenith.edu
