@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { AttendanceStatus } from "@prisma/client";
 import { saveAttendanceAction } from "@/app/(app)/asistencia/actions";
 import { Check, X, Clock, FileText } from "lucide-react";
+
+type AttendanceStatus = "PRESENT" | "ABSENT" | "LATE" | "EXCUSED";
 
 type StudentRow = {
   id: string;
@@ -32,7 +33,7 @@ export function AttendanceSheet({
 }) {
   const [statuses, setStatuses] = useState<Record<string, AttendanceStatus>>(
     Object.fromEntries(
-      students.map((s) => [s.id, s.currentStatus ?? AttendanceStatus.PRESENT]),
+      students.map((s) => [s.id, s.currentStatus ?? "PRESENT"]),
     ),
   );
   const [isPending, startTransition] = useTransition();
@@ -61,7 +62,7 @@ export function AttendanceSheet({
     <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--surface)]">
       <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-5 py-3">
         <button
-          onClick={() => markAll(AttendanceStatus.PRESENT)}
+          onClick={() => markAll("PRESENT")}
           className="text-xs text-[var(--accent)] hover:underline"
         >
           Marcar todos presentes
