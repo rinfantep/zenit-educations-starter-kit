@@ -90,12 +90,13 @@ export default function LandingPage() {
             Credenciales de acceso al demo (entorno público, se reinicia
             periódicamente)
           </p>
-          <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { role: "Super Admin", email: "admin@zenith.edu" },
               { role: "Director", email: "director@zenith.edu" },
               { role: "Profesor", email: "profesor1@zenith.edu" },
               { role: "Estudiante", email: "estudiante1@zenith.edu" },
+              { role: "Padre/Madre", email: "padre1@zenith.edu" },
             ].map((c) => (
               <div
                 key={c.email}

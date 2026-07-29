@@ -215,6 +215,27 @@ export async function seedDemoData(prisma: PrismaClient) {
     students.push(student);
   }
 
+  console.log("Creando padre de ejemplo...");
+  const parentUser = await prisma.user.upsert({
+    where: { email: "padre1@zenith.edu" },
+    update: {},
+    create: {
+      name: "Roberto Sánchez",
+      email: "padre1@zenith.edu",
+      password,
+      role: Role.PARENT,
+    },
+  });
+  const parentProfile = await prisma.parentProfile.upsert({
+    where: { userId: parentUser.id },
+    update: {},
+    create: {
+      userId: parentUser.id,
+      phone: "+1 809-555-0100",
+      children: { connect: [{ id: students[0].id }, { id: students[1].id }] },
+    },
+  });
+
   console.log("Generando asistencia...");
   for (let d = 0; d < 20; d++) {
     const date = new Date();
