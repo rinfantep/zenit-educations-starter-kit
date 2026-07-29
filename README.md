@@ -179,7 +179,7 @@ performance in the buyer's specific environment.
 
 ## Support
 
-This is a commercial starter kit. For installation or customization questions: [your email/support channel here].
+This is a commercial starter kit. For installation or customization questions: [rinfantep92@gmail.com].
 
 user
 admin@zenith.edu
