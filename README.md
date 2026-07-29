@@ -2,7 +2,7 @@
 
 A complete school management system built with Next.js 16, TypeScript, Prisma, and PostgreSQL. Production-ready, with optional integrations for payments, file storage, and email.
 
-**[View live demo →](YOUR_VERCEL_URL_HERE)**
+**[View live demo →](https://zenit-educations-starter-kit.vercel.app/)**
 
 ## Screenshots
 
